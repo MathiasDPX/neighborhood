@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackBlogger</title>
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="/static/img/favicon.png" />
+    <link rel="stylesheet" href="/static/css/base.css" />
+</head>
+<body>
+    <!--<a href="https://hackclub.com/"><img id="hc-flag" src="https://assets.hackclub.com/flag-orpheus-top.png"></a>-->
+    <div id="user-profile">
+        <a href="/user/{{ userdata['id'] }}"><img src="{{ userdata['pfp'] }}"></a>
+    </div>
+    <div id="main">
+        <article>
+            <h1>{{ data['title'] }}</h1>
+            <small>Written by <a href="/user/{{ data['authorid'] }}">@{{ data['author'] }}</a></small>
+            <hr>
+            <br>
+            <p>{{ data['body'] }}</p>
+            <div>
+                <hr>
+                <textarea></textarea>
+                <input value="Submit" type="button">
+            </div>
+        </article>
+    </div>
+</body>
+</html>

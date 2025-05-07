@@ -1,4 +1,7 @@
 Flask
-python-dotenv
+libsass
 psycopg2
 waitress
+requests
+python-dotenv
+flask-jwt-extended

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackBlogger</title>
+    <title>{{ data['username'] }}</title>
+    <script src="https://kit.fontawesome.com/b1ffc54f23.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/static/img/favicon.png" />
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/user.css" />
+</head>
+<body>
+    <div id="main">
+        <table id="user-part">
+            <tr>
+                <td><img id="pfp" src="{{ data['pfp'] or 'https://placehold.co/200x200' }}"></td>
+                <td id="info"><table>
+                    <tr><td><h1>{{ data['username'] }}</h1></td></tr>
+                    {% if data['github'] != None %}
+                        <tr><td><i class="fa fa-brands fa-square-github"></i> <a class="social-link" target="_blank" href="https://github.com/{{ data['github'] }}">@{{ data['github'] }}</a></td></tr>
+                    {% endif %}
+                    <tr><td><i class="fa fa-brands fa-slack"></i> <a id="slack-link" class="social-link" target="_blank" href="https://hackclub.slack.com/team/{{ data['slack'] }}">@{{ data['slack'] }}</a></td></tr>
+                </table></td>
+            </tr>
+        </table>
+        <hr>
+        <div id="articles">
+            <h2>Articles</h2>
+            {% for article in articles %}
+            <div class="article">
+                <label class="article-title"><a href="/article/{{ article['id'] }}">{{ article['title'] }}</a></label><br>
+                <label class="article-date">{{ article['created_at'] }}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const slackLink = document.getElementById('slack-link');
+            const pfpImg = document.getElementById('pfp');
+            const url = `https://slack.mathias.hackclub.app/users.info/{{ data['slack'] }}`;
+    
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const req = await response.json();
+                if (req && req.user && req.user.name) {
+                    slackLink.textContent = `@${req.user.name}`;
+                    pfpImg.src = req.user.profile.image_512;
+                } else {
+                    console.error('Invalid response structure:', req);
+                }
+            } catch (error) {
+                console.error('Error fetching Slack user info:', error);
+            }
+        });
+    </script>
+</body>
+</html>

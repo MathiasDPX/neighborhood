@@ -1,0 +1,61 @@
+h1 {
+    padding-top: 0.5em;
+}
+
+
+td#info {
+    // TODO: Full heigh table
+    text-align: left;
+    padding-left: 1em;
+    vertical-align: top;
+
+    table {
+        border-spacing: 0 0.1em;
+    }
+}
+
+table#user-part, div#articles {
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+#pfp {
+    max-width: 40%;
+    width: 100%;
+    height: auto;
+}
+
+td {
+    width: auto;
+}
+
+div#articles {
+    h2 {
+        padding-bottom: 0.5em;
+    }
+}
+
+div.article {
+    .article-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 0.25em;
+    }
+    width: 95%;
+    padding: 0.75em;
+    background-color: #f0f0f0;
+}
+
+hr {
+    margin-top: 0.5em;
+}
+
+a.social-link {
+    text-decoration: none;
+    color: #61AFEF;
+}
+
+i.fa {
+    font-size: 1.25em;
+    vertical-align: middle;
+}
