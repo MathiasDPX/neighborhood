@@ -47,9 +47,9 @@ class Articles:
         dictcur.execute("SELECT * FROM articles WHERE author=%s ORDER BY created_at ASC", (id, ))
         return dictcur.fetchall()
 
-    def get_latest(limit=10):
-        cur.execute("SELECT (SELECT username WHERE, title, created_at) FROM articles ORDER BY created_at LIMIT %s;", (limit, ))
-        return cur.fetchmany(limit)
+    def get_latest(limit=10, offset=10):
+        dictcur.execute("SELECT * FROM articles ORDER BY created_at LIMIT %s OFFSET %s;", (limit, offset, ))
+        return dictcur.fetchmany(limit)
 
     def get_article(id):
         dictcur.execute("SELECT * FROM articles WHERE id=%s LIMIT 1;", (id, ))
