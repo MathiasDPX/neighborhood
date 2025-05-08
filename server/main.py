@@ -171,6 +171,14 @@ def article(id:int):
         else:
             database.Articles.delete_article(id)
 
+"""Get latest articles"""
+@app.route("/api/articles", methods=["GET"])
+def articles():
+    limit = request.args.get("limit", 10, type=int)
+    offset = request.args.get("offset", 0, type=int)
+
+    return database.Articles.get_latest(limit, offset)
+
 """Post an article"""
 @app.route("/api/articles/post", methods=["POST"])
 @jwt_required()
